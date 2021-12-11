@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>.
+    <button id="btn">添加新的窗口</button>
+    <script>
+        const { log } = console
+        /** 这里写法是有问题会获取不到 require，因为是render进程是没有办法拿到node api 的*/
+        const { BrowserWindow } = require('@electron/remote') 
+        console.log(BrowserWindow)
+        const btn = document.getElementById('btn')
+        btn.onclick = () => {
+            const newWin = new BrowserWindow({
+                width: 400,
+                height: 400
+            })
+            console.log(111)
+            //newWin.loadURL('www.baidu.com')
+            win.loadFile('.index2.html')
+            newWin.on('close', () => {
+                newWin = null
+            })
+        }
+    </script>
+</body>
+
+</html>
